@@ -8,10 +8,10 @@ public class Invoice
 {
     private int totalCost;
     List<IParcel> parcelList;
+
     public Invoice()
     {
         parcelList = new ArrayList<>();
-        parcelList.add(new Parcel(1,1,1));
     }
     public int getTotalCost()
     {
@@ -21,6 +21,11 @@ public class Invoice
     public List<IParcel>  getParcelList()
     {
         return parcelList;
+    }
+
+    public void addParcel(IParcel parcel)
+    {
+        parcelList.add(parcel);
     }
 
     public void addToTotalCost(int cost)
