@@ -85,4 +85,33 @@ public class CourierSystemTests {
         Assert.assertEquals(13, invoice.getTotalCost());
 
     }
+
+
+    @Test
+    public void heavyParcelCalculation()
+    {
+        //Given
+        CourierSystem sys = new CourierSystem();
+        IParcel smallParcel = new Parcel(60,2,3,3);
+        //Heavy parcel calculation should override size based calculation
+        //Size based calc will be discarded
+        ICalculation sizeBasedCalc = new SizeBasedCalculation();
+        ICalculation heavyParcelCalc = new HeavyParcelCalculation();
+
+        //When
+        sys.addParcel(smallParcel);
+        Invoice invoice;
+        invoice = sys.calculateParcelCost(sizeBasedCalc);
+        invoice = sys.calculateParcelCost(heavyParcelCalc);
+        List<IParcel> calculateParcelList = invoice.getParcelList();
+
+        //Then
+        for(IParcel parcel: calculateParcelList)
+        {
+            Assert.assertEquals(SizeType.SMALL, parcel.getSizeType());
+            Assert.assertEquals(60, parcel.getCost());
+        }
+        Assert.assertEquals(60, invoice.getTotalCost());
+
+    }
 }
