@@ -8,52 +8,23 @@ public class CourierSystem
 {
     List<IParcel> parcelList;
     Invoice curInvoice;
-    boolean speedyShipping;
 
-    public void setSpeedyShipping(boolean speedyShipping) {
-        this.speedyShipping = speedyShipping;
-    }
 
     public CourierSystem()
     {
-        this.parcelList = new ArrayList<>();
-        this.curInvoice = new Invoice();
-        this.speedyShipping = false;
+       parcelList = new ArrayList<>();
+       curInvoice = new Invoice();
     }
     public void addParcel(IParcel parcel)
     {
         parcelList.add(parcel);
     }
 
-    public Invoice calculateParcelCost()
+    public Invoice calculateParcelCost(ICalculation costType)
     {
-        for(IParcel parcel:parcelList)
-        {
-            if(parcel.getSizeType()==SizeType.SMALL)
-            {
-                parcel.setCost(3);
-            }
-            else if(parcel.getSizeType()==SizeType.MEDIUM)
-            {
-                parcel.setCost(8);
-            }
-            else if (parcel.getSizeType()==SizeType.LARGE)
-            {
-                parcel.setCost(15);
-            }
-            else if(parcel.getSizeType()==SizeType.XLARGE)
-            {
-                parcel.setCost(25);
-            }
-            this.curInvoice.addParcel(parcel);
-            this.curInvoice.addToTotalCost(parcel.getCost());
-        }
-        if(this.speedyShipping)
-        {
-            this.curInvoice.setTotalCost(curInvoice.getTotalCost()*2);
-        }
+        costType.calculate(parcelList, curInvoice);
 
-        return this.curInvoice;
+        return curInvoice;
     }
 
     public static void main(String[] args)
