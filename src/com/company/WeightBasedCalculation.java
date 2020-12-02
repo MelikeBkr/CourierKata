@@ -16,7 +16,8 @@ public class WeightBasedCalculation implements ICalculation
                 extraWeightCost = weightDifference*2;
                 parcel.setCost(parcel.getCost()+extraWeightCost);
             }
-            invoice.addParcel(parcel);
+
+            invoice.addParcelDetails(parcel,0);
             invoice.addToTotalCost(extraWeightCost);
         }
         return invoice;

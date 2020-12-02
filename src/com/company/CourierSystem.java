@@ -13,7 +13,8 @@ public class CourierSystem
     public CourierSystem()
     {
        parcelList = new ArrayList<>();
-       curInvoice = new Invoice();
+        HashMap<IParcel,Integer> parcelDiscountMap = new HashMap<>();
+        curInvoice = new Invoice(parcelDiscountMap);
     }
     public void addParcel(IParcel parcel)
     {

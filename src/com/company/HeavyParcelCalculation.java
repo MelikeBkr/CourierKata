@@ -21,7 +21,7 @@ public class HeavyParcelCalculation implements ICalculation
                 updatedCost = HEAVY_PARCEL_STD_COST + weightDifference*OVERWEIGHT_UNIT_COST;
                 parcel.setCost(updatedCost);
             }
-            invoice.addParcel(parcel);
+            invoice.addParcelDetails(parcel,0);
             invoice.addToTotalCost(updatedCost);
         }
         return  invoice;

@@ -25,7 +25,7 @@ public class SizeBasedCalculation implements ICalculation
             {
                 parcel.setCost(25);
             }
-            invoice.addParcel(parcel);
+            invoice.addParcelDetails(parcel,0);
             invoice.addToTotalCost(parcel.getCost());
         }
         return invoice;
