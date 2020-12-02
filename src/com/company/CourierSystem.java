@@ -8,11 +8,17 @@ public class CourierSystem
 {
     List<IParcel> parcelList;
     Invoice curInvoice;
+    boolean speedyShipping;
+
+    public void setSpeedyShipping(boolean speedyShipping) {
+        this.speedyShipping = speedyShipping;
+    }
 
     public CourierSystem()
     {
-        parcelList = new ArrayList<>();
-        curInvoice = new Invoice();
+        this.parcelList = new ArrayList<>();
+        this.curInvoice = new Invoice();
+        this.speedyShipping = false;
     }
     public void addParcel(IParcel parcel)
     {
@@ -39,10 +45,15 @@ public class CourierSystem
             {
                 parcel.setCost(25);
             }
-            curInvoice.addParcel(parcel);
-            curInvoice.addToTotalCost(parcel.getCost());
+            this.curInvoice.addParcel(parcel);
+            this.curInvoice.addToTotalCost(parcel.getCost());
         }
-        return curInvoice;
+        if(this.speedyShipping)
+        {
+            this.curInvoice.setTotalCost(curInvoice.getTotalCost()*2);
+        }
+
+        return this.curInvoice;
     }
 
     public static void main(String[] args)

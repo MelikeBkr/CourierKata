@@ -13,6 +13,11 @@ public class Invoice
     {
         parcelList = new ArrayList<>();
     }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
     public int getTotalCost()
     {
         return totalCost;
